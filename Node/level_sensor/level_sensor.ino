@@ -1,8 +1,8 @@
 /* Water Level Meter */
 
 // Pin definitions
-int trig = 12;
-int echo = 11;
+#define TRIGGER 12
+#define ECHO 11
 
 
 //Constants
@@ -14,19 +14,19 @@ float t = 0, distance = 0;
 void setup()
 {
   Serial.begin(9600);
-  pinMode(trig, OUTPUT);
-  pinMode(echo, INPUT); 
+  pinMode(TRIGGER, OUTPUT);
+  pinMode(ECHO, INPUT); 
 }
 
 void loop()
 {
-  digitalWrite(trig, HIGH);
+  digitalWrite(TRIGGER, HIGH);
   delayMicroseconds(10);
-  digitalWrite(trig, LOW);
+  digitalWrite(TRIGGER, LOW);
   delayMicroseconds(2);
-  t = pulseIn(echo, HIGH);
+  t = pulseIn(ECHO, HIGH);
   distance = t * 340 / 20000;
   float level = CONTAINER_HEIGHT - distance;
   Serial.println(level);
-  delay(1000);
+  delay(500);
 }
